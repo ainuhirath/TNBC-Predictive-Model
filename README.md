@@ -7,6 +7,7 @@ As I was in the process of ramping up my DS skills, I thought to explore whether
 Objective: Develop a predictive model using patient-reported side-effect data from chemotherapy or radiation treatment in TNBC patients to predict side-effect severity based on clinical characteristics.
 
 Key Data Science Skills Demonstrated:
+
     Feature Engineering: Deriving useful predictors from clinical data.
     Predictive Modeling: Logistic regression, Random Forests, or Gradient Boosting.
     Evaluation Metrics: Accuracy, Precision/Recall, ROC-AUC.
