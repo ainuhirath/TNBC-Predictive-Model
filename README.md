@@ -9,5 +9,5 @@ Objective: Develop a predictive model using patient-reported side-effect data fr
 Key Data Science Skills Demonstrated:
 
     Feature Engineering: Deriving useful predictors from clinical data.
-    Predictive Modeling: Logistic regression, Random Forests, or Gradient Boosting.
+    Predictive Modeling: optimize results looking at each of Logistic regression, Random Forests, or Gradient Boosting.
     Evaluation Metrics: Accuracy, Precision/Recall, ROC-AUC.
