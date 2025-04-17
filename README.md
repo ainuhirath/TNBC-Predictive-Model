@@ -91,6 +91,7 @@ python tnbc_side_effect_prediction.py
 ### Option 3: Streamlit Web App (coming soon)
 streamlit run app.py
 
+---
 
 ## 💡 Future Work
 
@@ -99,12 +100,16 @@ streamlit run app.py
 -    Add Streamlit interface for clinician use
 -    Deploy as an API or clinical tool prototype
 
+---
+
 ## 📬 Contact
 
 If you're an employer, collaborator, or just curious:
 -    Email: ainuhirath@gmail.com
 -    GitHub: ainuhirath
 -    Open to contributing to healthcare-focused ML efforts.
+
+---
 
 ## 🏷️ Tags
 machine-learning healthcare tnbc classification python oncology streamlit data-science-project
