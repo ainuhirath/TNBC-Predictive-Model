@@ -1,3 +1,4 @@
+#Setup
 
 import pandas as pd
 import numpy as np
@@ -23,7 +24,7 @@ df = pd.DataFrame(X, columns=feature_names)
 df['side_effect_severity'] = y
 
 # Add realistic values
-df['treatment_type'] = np.random.choice(['chemo_A', 'chemo_B', 'radiation'], size=len(df))
+df['treatment_type'] = np.random.choice(['chemo', 'immunotherapy', 'radiation'], size=len(df))
 df['liver_function'] = np.round(np.clip(df['liver_function'], 0, 5))
 df['age'] = np.round(np.clip(df['age'] * 15 + 50, 20, 90))
 df['tumor_size'] = np.round(np.clip(df['tumor_size'] * 20 + 30, 5, 120))
