@@ -1,4 +1,4 @@
-## 🧪 Predicting Side-Effect Severity in Triple-Negative Breast Cancer (TNBC) Treatment
+# 🧪 Predicting Side-Effect Severity in Triple-Negative Breast Cancer (TNBC) Treatment
 
 Objective: This project builds and compares machine learning models to predict whether a patient undergoing treatment for **Triple-Negative Breast Cancer (TNBC)** is likely to experience **mild** or **severe** side effects from chemotherapy or radiation. The goal is to support early intervention strategies and improve patient care through predictive modeling.
 
