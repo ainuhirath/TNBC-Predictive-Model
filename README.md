@@ -3,7 +3,7 @@
 Objective: This project builds and compares machine learning models to predict whether a patient undergoing treatment for **Triple-Negative Breast Cancer (TNBC)** is likely to experience **mild** or **severe** side effects from chemotherapy or radiation. The goal is to support early intervention strategies and improve patient care through predictive modeling.
 
 Key Data Science Skills Demonstrated:
-    Feature Engineering - Deriving useful predictors from clinical data;
+  > Feature Engineering - Deriving useful predictors from clinical data;
     Predictive Modeling - optimize results looking at each of Logistic regression, Random Forests, or Gradient Boosting;
     Evaluation Metrics - Accuracy, Precision/Recall, ROC-AUC.
 
