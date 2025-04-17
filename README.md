@@ -34,13 +34,13 @@ This prototype uses **simulated clinical data** representing 1,000 TNBC patients
 - Demographics: age, comorbidities
 - Tumor characteristics: size, lymph nodes
 - Lab values: white blood cell count, platelet count, liver function
-- Treatment type: chemo_A, chemo_B, radiation
+- Treatment type: chemo, immunotherapy, radiation
 
 The **target variable** is `side_effect_severity`:
 - `0`: mild side effects
 - `1`: severe side effects
 
-In future versions, this project will be adapted to real-world data (e.g., TCGA-BRCA or METABRIC) which I am trying to extract from real-life available data.
+In future versions, this project will be adapted to real-world data (e.g., TCGA-BRCA or METABRIC) which I am trying to extract from real-life available data (that will then require an addional stage to be inserted, EDA prior to ML).
 
 ---
 
