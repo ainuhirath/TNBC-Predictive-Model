@@ -82,6 +82,29 @@ Future updates will include:
 ## 🚀 Run This Project
 
 ### Option 1: Run in Jupyter Notebook
-```bash
 pip install -r requirements.txt
 jupyter notebook tnbc_side_effect_prediction.ipynb
+
+### Option 2: Run the Script
+python tnbc_side_effect_prediction.py
+
+### Option 3: Streamlit Web App (coming soon)
+streamlit run app.py
+
+
+## 💡 Future Work
+
+-    Incorporate real TNBC datasets (TCGA, METABRIC)
+-    Expand to multiclass side effect grading
+-    Add Streamlit interface for clinician use
+-    Deploy as an API or clinical tool prototype
+
+## 📬 Contact
+
+If you're an employer, collaborator, or just curious:
+-    Email: ainuhirath@gmail.com
+-    GitHub: ainuhirath
+-    Open to contributing to healthcare-focused ML efforts.
+
+## 🏷️ Tags
+machine-learning healthcare tnbc classification python oncology streamlit data-science-project
