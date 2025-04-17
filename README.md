@@ -95,10 +95,10 @@ streamlit run app.py
 
 ## 💡 Future Work
 
--    Incorporate real TNBC datasets (TCGA, METABRIC)
--    Expand to multiclass side effect grading
--    Add Streamlit interface for clinician use
--    Deploy as an API or clinical tool prototype
+-[]    Incorporate real TNBC datasets (TCGA, METABRIC)
+-[]    Expand to multiclass side effect grading
+-[]    Add Streamlit interface for clinician use
+-[]    Deploy as an API or clinical tool prototype
 
 ---
 
@@ -112,4 +112,10 @@ If you're an employer, collaborator, or just curious:
 ---
 
 ## 🏷️ Tags
-machine-learning healthcare tnbc classification python oncology streamlit data-science-project
+machine-learning
+healthcare
+tnbc classification
+python
+oncology
+streamlit
+
