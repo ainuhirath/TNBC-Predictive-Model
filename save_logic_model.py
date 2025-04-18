@@ -72,5 +72,5 @@ pipeline = Pipeline([
 ])
 
 pipeline.fit(X, y)
-joblib.dump(pipeline, "tnbc_model_logic_based.joblib")
+joblib.dump(pipeline, "tnbc_model_pipeline.joblib")
 print("✅ Updated logic-based model saved.")
