@@ -97,7 +97,7 @@ streamlit run app.py
 
 - [ ]    Incorporate real TNBC datasets (TCGA, METABRIC)
 - [ ]    Expand to multiclass side effect grading
-- [ ]    Add Streamlit interface for clinician use
+- [x]    Add Streamlit interface for clinician use
 - [ ]    Deploy as an API or clinical tool prototype
 
 ---
