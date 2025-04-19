@@ -20,11 +20,12 @@ Triple-Negative Breast Cancer is an aggressive subtype that lacks targeted hormo
 
 ## 📁 Project Contents
 
+- `README.md` – Project overview and usage instructions.
 - `tnbc_side_effect_prediction.ipynb` – Full notebook: data simulation, preprocessing, modeling, and evaluation.
 - `tnbc_side_effect_prediction.py` – Python script version of the notebook.
 - `app.py` – Streamlit app for interactive prediction.
 - `requirements.txt` – Environment dependencies.
-- `README.md` – Project overview and usage instructions.
+- `tnbc_model_pipeline` – Trained model pipline for use with Streamlit app.
 
 ---
 
@@ -112,10 +113,4 @@ If you're an employer, collaborator, or just curious:
 ---
 
 ## 🏷️ Tags
-machine-learning
-healthcare
-tnbc classification
-python
-oncology
-streamlit
-
+`machine-learning` `healthcare` `tnbc classification` `python` `oncology` `streamlit`
