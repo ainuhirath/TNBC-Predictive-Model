@@ -82,15 +82,15 @@ Future updates will include:
 
 ## 🚀 Run This Project
 
-### Option 1: Run in Jupyter Notebook
+### Option 1: Streamlit Web App 
+https://tnbc-predictive-model-prototype.streamlit.app/
+
+### Option 2: Run in Jupyter Notebook
 pip install -r requirements.txt
 jupyter notebook tnbc_side_effect_prediction.ipynb
 
-### Option 2: Run the Script
+### Option 3: Run the Script
 python tnbc_side_effect_prediction.py
-
-### Option 3: Streamlit Web App (coming soon)
-streamlit run app.py
 
 ---
 
