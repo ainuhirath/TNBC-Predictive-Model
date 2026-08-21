@@ -1,9 +1,7 @@
 """
 Trains the TNBC side-effect severity classifier and serializes it for the Streamlit app.
 
-Replaces save_logic_model.py.
-
-Two bugs fixed from the original:
+Two bugs fixed from the earlier version of this script:
 
 1. Features were selected with select_dtypes(include=["float64", "int64"]).
    On Windows, np.random.randint returns int32, so age, lymph_nodes,
