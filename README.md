@@ -1,116 +1,117 @@
-# 🧪 Predicting Side-Effect Severity in Triple-Negative Breast Cancer (TNBC) Treatment
+# Predicting Side-Effect Severity in Triple-Negative Breast Cancer Treatment
 
-Objective: This project builds and compares machine learning models to predict whether a patient undergoing treatment for **Triple-Negative Breast Cancer (TNBC)** is likely to experience **mild** or **severe** side effects from chemotherapy or radiation. The goal is to support early intervention strategies and improve patient care through predictive modeling.
+An end-to-end machine learning pipeline — simulation, preprocessing, model comparison, and a deployed application.
 
->Key Data Science Skills Demonstrated:
->- Feature Engineering - Deriving useful predictors from clinical data;
->- Predictive Modeling - optimize results looking at each of Logistic regression, Random Forests, or Gradient Boosting;
->- Evaluation Metrics - Accuracy, Precision/Recall, ROC-AUC.
+**[Try the live app →](https://tnbc-predictive-model-prototype.streamlit.app/)**
 
+Built by [Joe Giacobbe](https://giacobbe.ca) · joe@giacobbe.ca
 
 ---
 
-## 📌 Project Motivation
+## What this is
 
-Triple-Negative Breast Cancer is an aggressive subtype that lacks targeted hormonal treatments. Side effects from standard therapies like chemotherapy or radiation can vary widely and significantly impact quality of life. Accurately predicting which patients are at higher risk for **severe treatment side effects** can help oncologists personalize treatment plans.
+A classifier that estimates the probability a patient undergoing chemotherapy or radiation for Triple-Negative Breast Cancer will experience severe side effects, wrapped in a Streamlit interface so the model can be used rather than only described.
 
-> My wife is currently undergoing cancer treatment for TNBC. It's been a long process with a number of treatment options of varying types. As I was in the process of ramping up my DS skills, I thought to explore whether some patterns might emerge from other patients' anonymized data to help predict her response and perhaps more generally support better care and decisions for patients and providers alike.
+TNBC is an aggressive subtype without targeted hormonal treatment options. Side effects from standard therapies vary widely and materially affect quality of life, so identifying higher-risk patients earlier is a genuinely useful clinical question — and a well-shaped classification problem.
 
----
-
-## 📁 Project Contents
-
-- `README.md` – Project overview and usage instructions.
-- `tnbc_side_effect_prediction.ipynb` – Full notebook: data simulation, preprocessing, modeling, and evaluation.
-- `tnbc_side_effect_prediction.py` – Python script version of the notebook.
-- `app.py` – Streamlit app for interactive prediction.
-- `requirements.txt` – Environment dependencies.
-- `tnbc_model_pipeline` – Trained model pipline for use with Streamlit app.
+I built it because someone close to me is going through TNBC treatment, which is how the problem came to my attention and why I was invested in working on it.
 
 ---
 
-## 🔬 Data Description
+## Read the results carefully
 
-This prototype uses **simulated clinical data** representing 1,000 TNBC patients, with realistic distributions for:
-- Demographics: age, comorbidities
-- Tumor characteristics: size, lymph nodes
-- Lab values: white blood cell count, platelet count, liver function
-- Treatment type: chemo, immunotherapy, radiation
+**This project uses simulated data.** That is a deliberate constraint — individual-patient TNBC data with side-effect grading isn't openly available, and I wanted a working pipeline before wiring in a real dataset — but it shapes what the numbers below can mean.
 
-The **target variable** is `side_effect_severity`:
-- `0`: mild side effects
-- `1`: severe side effects
+Patients are generated with clinically plausible distributions. The label is drawn probabilistically from an additive risk score rather than assigned by a hard threshold, so the problem carries irreducible noise and perfect separation is not achievable. That matters: an earlier version used a deterministic rule, which made the task pure rule-recovery and produced impressively meaningless scores.
 
-In future versions, this project will be adapted to real-world data (e.g., TCGA-BRCA or METABRIC) which I am trying to extract from real-life available data (that will then require an addional stage to be inserted, EDA prior to ML).
+**What the code demonstrates:** preprocessing and estimator composed in a single scikit-learn `Pipeline` so training and inference cannot diverge; model comparison against an interpretable baseline; evaluation on a stratified held-out split using metrics appropriate to an imbalanced target; serialization and deployment of the fitted pipeline.
+
+**What it does not:** real-world missingness and measurement noise, exploratory analysis of an unfamiliar dataset, or calibration and threshold selection against clinical cost. Those come with the real data.
 
 ---
 
-## ⚙️ Machine Learning Pipeline
+## Data
 
-- **Preprocessing**
-  - Scaling (StandardScaler)
-  - One-hot encoding (treatment type)
-  - Imputation of missing values
-- **Models Compared**
-  - Logistic Regression (interpretable baseline)
-  - Random Forest (nonlinear, high-performing)
-- **Evaluation Metrics**
-  - Accuracy
-  - Precision & Recall
-  - F1 Score
-  - ROC-AUC
-  - Confusion Matrix & ROC Curve Visualization
+1,000 simulated patients.
 
----
+| Category | Fields |
+| --- | --- |
+| Demographics | Age, number of comorbidities |
+| Tumor characteristics | Size, positive lymph nodes |
+| Lab values | White blood cell count, platelet count, liver function score |
+| Treatment | Type (chemo, immunotherapy, radiation), number of prior treatments |
+| Risk | Genetic risk score |
 
-## 🧠 Key Results
+Target `side_effect_severity`: `0` = mild, `1` = severe. Prevalence is roughly 19%, so the classes are imbalanced by design.
 
-| Model              | Accuracy | F1 Score | ROC-AUC |
-|-------------------|----------|----------|---------|
-| Random Forest      | 94%      | 92%      | **0.97** |
-| Logistic Regression| 84%      | 81%      | 0.91     |
+Note that `comorbidities`, `genetic_risk` and `prior_treatments` do not enter the risk score — they are deliberately uninformative, and a well-behaved model should largely ignore them. Checking whether it does is a useful sanity test on any change to the pipeline.
 
 ---
 
-## 📈 Feature Importance (Coming Soon)
+## Pipeline
 
-Future updates will include:
-- SHAP plots for interpretability
-- Clinical context on which features contribute most to side-effect risk
+**Preprocessing** — mean imputation and standard scaling for numeric features; most-frequent imputation and one-hot encoding for treatment type. Feature lists are declared explicitly rather than inferred from dtype, and an assertion after fitting confirms no column was silently dropped.
+
+**Models compared** — logistic regression and random forest, both with balanced class weights.
+
+**Selection** — by average precision. At 19% prevalence, accuracy is close to useless: predicting "mild" for every patient scores 81%.
+
+### Results
+
+Stratified 80/20 split; metrics on the held-out test set.
+
+| Model | Accuracy | Precision | Recall | F1 | ROC-AUC | Avg. precision |
+| --- | --- | --- | --- | --- | --- | --- |
+| Logistic Regression | 0.71 | 0.375 | **0.789** | 0.508 | **0.776** | **0.467** |
+| Random Forest | 0.815 | 0.545 | 0.158 | 0.245 | 0.728 | 0.396 |
+| *Always predict mild* | *0.810* | *—* | *0.000* | *0.000* | *0.500* | *—* |
+
+**Logistic regression is deployed**, despite lower accuracy. The generating process is additive and logistic, so a linear model is correctly specified here; the random forest buys its accuracy by predicting "mild" almost everywhere, catching 16% of severe cases against logistic regression's 79%. Where the expensive error is a missed severe case, that trade is the wrong one.
+
+Figures are written to `metrics.json` by the training script so this table can be regenerated rather than retyped.
 
 ---
 
-## 🚀 Run This Project
+## Repository contents
 
-### Option 1: Streamlit Web App 
-https://tnbc-predictive-model-prototype.streamlit.app/
+| File | Purpose |
+| --- | --- |
+| `train_and_save_model.py` | Simulation, pipeline, model comparison, serialization |
+| `app.py` | Streamlit application |
+| `tnbc_model_pipeline.joblib` | Fitted pipeline consumed by the app |
+| `metrics.json` | Test-set results from the most recent training run |
+| `tnbc_side_effect_prediction.ipynb` | Exploratory notebook |
+| `requirements.txt` | Pinned dependencies |
 
-### Option 2: Run in Jupyter Notebook
+---
+
+## Running it
+
+```bash
 pip install -r requirements.txt
-jupyter notebook tnbc_side_effect_prediction.ipynb
+python train_and_save_model.py    # retrain and regenerate the artifact
+streamlit run app.py              # launch the app
+```
 
-### Option 3: Run the Script
-python tnbc_side_effect_prediction.py
-
----
-
-## 💡 Future Work
-
-- [ ]    Incorporate real TNBC datasets (TCGA, METABRIC)
-- [ ]    Expand to multiclass side effect grading
-- [x]    Add Streamlit interface for clinician use
-- [ ]    Deploy as an API or clinical tool prototype
+The serialized pipeline is version-sensitive — regenerate it after changing the scikit-learn pin.
 
 ---
 
-## 📬 Contact
+## Roadmap
 
-If you're an employer, collaborator, or just curious:
--    Email: ainuhirath@gmail.com
--    GitHub: ainuhirath
--    Open to contributing to healthcare-focused ML efforts.
+- [x] Streamlit interface for interactive prediction
+- [x] Probabilistic label generation
+- [ ] Rebuild on a real dataset (METABRIC or TCGA-BRCA), with EDA ahead of modelling
+- [ ] Probability calibration and threshold selection against clinical cost
+- [ ] SHAP values for feature-level interpretability
+- [ ] Expand from binary to multiclass side-effect grading
 
 ---
 
-## 🏷️ Tags
-`machine-learning` `healthcare` `tnbc classification` `python` `oncology` `streamlit`
+## About
+
+I'm Joe Giacobbe — twenty-five years running operations and analytics organizations, exploring models myself rather than only deciding where they should be applied. More at [giacobbe.ca](https://giacobbe.ca).
+
+Open to contributing to healthcare-focused ML work.
+
+**Contact:** joe@giacobbe.ca · [LinkedIn](https://linkedin.com/in/joegiacobbe)
