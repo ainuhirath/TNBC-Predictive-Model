@@ -1,0 +1,25 @@
+{
+  "deployed_model": "Logistic Regression",
+  "prevalence": 0.19,
+  "baseline_accuracy": 0.81,
+  "test_set_results": [
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.71,
+      "precision": 0.375,
+      "recall": 0.789,
+      "f1": 0.508,
+      "roc_auc": 0.776,
+      "avg_precision": 0.467
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.815,
+      "precision": 0.545,
+      "recall": 0.158,
+      "f1": 0.245,
+      "roc_auc": 0.728,
+      "avg_precision": 0.396
+    }
+  ]
+}
