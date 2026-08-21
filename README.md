@@ -80,7 +80,6 @@ Figures are written to `metrics.json` by the training script so this table can b
 | `app.py` | Streamlit application |
 | `tnbc_model_pipeline.joblib` | Fitted pipeline consumed by the app |
 | `metrics.json` | Test-set results from the most recent training run |
-| `tnbc_side_effect_prediction.ipynb` | Exploratory notebook |
 | `requirements.txt` | Pinned dependencies |
 
 ---
