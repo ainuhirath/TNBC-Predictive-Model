@@ -4,17 +4,19 @@ import streamlit as st
 
 from train_and_save_model import FEATURE_RANGES, TREATMENT_LEVELS
 
+# Must be the first Streamlit call on the page — anything that renders,
+# including a cache spinner, will make this raise StreamlitAPIException.
+st.set_page_config(page_title="TNBC Risk Predictor", page_icon="🧬", layout="centered")
+
 MODEL_PATH = "tnbc_model_pipeline.joblib"
 
 
-@st.cache_resource
+@st.cache_resource(show_spinner=False)
 def load_model():
     return joblib.load(MODEL_PATH)
 
 
 model = load_model()
-
-st.set_page_config(page_title="TNBC Risk Predictor", page_icon="🧬", layout="centered")
 
 st.markdown("""
 # 🧬 TNBC Adverse Effects Predictor
